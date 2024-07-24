@@ -1,4 +1,4 @@
-import { TABLET_BREAKPOINT } from "../config/config";
+import { DESKTOP_BREAKPOINT, TABLET_BREAKPOINT } from "../config/config";
 
 import styled from "styled-components";
 
@@ -23,6 +23,12 @@ const StyledButton = styled.button`
     padding: 2rem;
     font: var(--f-button-tablet);
     border-radius: 1.5rem;
+  }
+
+  @media screen and (min-width: ${DESKTOP_BREAKPOINT}px) {
+    max-height: 4.7rem;
+    border-radius: 0.9rem;
+    padding: 1.2rem;
   }
 
   &:hover {

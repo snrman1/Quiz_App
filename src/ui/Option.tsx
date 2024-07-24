@@ -85,7 +85,9 @@ const MainContainer = styled.li<MainContainerProps>`
   }
 
   @media screen and (min-width: ${DESKTOP_BREAKPOINT}px) {
-    padding: ${(props) => (props.$isTransparent ? "0" : "1.25rem")};
+    padding: ${(props) => (props.$isTransparent ? "0" : "0.7rem")};
+    max-height: 4.2rem;
+    border-radius: 0.7rem;
   }
 `;
 

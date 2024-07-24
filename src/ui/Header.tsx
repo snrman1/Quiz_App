@@ -17,7 +17,7 @@ const StyledHeader = styled.header`
   }
 
   @media screen and (max-width: ${DESKTOP_BREAKPOINT}px) {
-    margin: 2rem 0;
+    margin: 0;
   }
 `;
 

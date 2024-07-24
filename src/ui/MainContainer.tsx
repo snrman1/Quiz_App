@@ -23,10 +23,10 @@ type StyledMainContainerProps = {
 // Styled component using styled-components library
 const StyledMainContainer = styled.div<StyledMainContainerProps>`
   padding: 2rem 1.5rem 1rem 1.5rem; // Padding for the container
-  height: 100dvh; // 100% of the viewport height
+  height: 75dvh; // 100% of the viewport height
   max-width: 640px; // Maximum width of the container
   margin: 0 auto; // Center the container horizontally
-  margin-top: 4rem; // Top margin
+  margin-top: 3.5rem; // Top margin
 
   // Apply custom style if the device is Mobile
   ${(props) => props.$device === Device.Mobile && props.$style}
@@ -39,7 +39,7 @@ const StyledMainContainer = styled.div<StyledMainContainerProps>`
 
   // Styles for desktop devices and above
   @media screen and (min-width: ${DESKTOP_BREAKPOINT}px) {
-    height: 75dvh; // 75% of the viewport height
+    // 75% of the viewport height
     display: flex; // Flexbox layout
     flex-direction: column; // Flex direction
     justify-content: space-evenly; // Evenly distribute space between children
