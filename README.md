@@ -36,9 +36,9 @@ Users should be able to:
 
 ### Screenshot
 
-![Screenshot Desktop](./public/screenshot/Desktop-screenshot.png)
-![Screenshot Mobile](./public/screenshot/Mobile-screenshot.png)
-![Screenshot Tablet](./public/screenshot/Tablet-screenshot.png)
+![Screenshot Desktop](/public/screenshot/Desktop-screenshot%20.png)
+![Screenshot Mobile](/public/screenshot/Moile-Screenshot%20.png)
+![Screenshot Tablet](/public/screenshot/Tablet-Screenshot%20.png)
 
 ### Links
 

@@ -60,6 +60,14 @@ function ThemeToggle() {
   // Handler function to dispatch the toggleTheme action
   const handleToggle = () => dispatch(toggleTheme());
 
+  // Handler function for keyboard events
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleToggle();
+    }
+  };
+
   return (
     <Container>
       <div>
@@ -68,7 +76,13 @@ function ThemeToggle() {
       </div>
       <StyledSwitch>
         {/* Switch component from react-bootstrap with an onClick handler */}
-        <Form.Switch type="switch" onClick={handleToggle} />
+        <Form.Switch
+          type="switch"
+          onClick={handleToggle}
+          onKeyDown={handleKeyDown}
+          tabIndex={0}
+          aria-label="Toggle theme"
+        />
       </StyledSwitch>
       <div>
         {/* Displaying the icon for dark theme */}

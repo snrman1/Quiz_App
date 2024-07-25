@@ -1,4 +1,3 @@
-// Importing necessary constants, functions, types, and hooks
 import { DESKTOP_BREAKPOINT, TABLET_BREAKPOINT } from "../config/config"; // Breakpoint values for responsive design
 import { Theme } from "../types/themeTypes"; // Theme type (e.g., light, dark)
 import { Status } from "../types/gameTypes"; // Game status type (e.g., Submitting, Completed)
@@ -17,6 +16,8 @@ type OptionProps = {
   icon: string; // Icon for the option
   isTransparent?: boolean; // Optional flag for transparency
   onClick?: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void; // Optional click handler
+  onKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => void; // Optional keydown handler
+  tabIndex?: number; // Optional tabIndex
 };
 
 // Type definition for MainContainer styled component props
@@ -36,7 +37,58 @@ type IconContainerProps = {
   $isSelected: boolean; // Flag for selection
   $highlightCorrect: boolean; // Flag to highlight correct answer
   $highlightWrong: boolean; // Flag to highlight wrong answer
+  $isHovered: boolean; // Flag for hover state
 };
+
+// Styled component for icon container
+const IconContainer = styled.div<IconContainerProps>`
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: var(--f-mobile-option-icon);
+  border-radius: 0.375rem;
+
+  background-color: ${(props) =>
+    props.$backgroundColor
+      ? props.$backgroundColor
+      : props.$isHovered && !props.$isSelected
+      ? "var(--clr-bg-btn-and-selection-active)"
+      : "var(--clr-lt-600)"};
+  ${(props) => props.$isSelected && "background-color: var(--clr-accent)"};
+  ${(props) =>
+    props.$highlightCorrect && "background-color: var(--clr-correct)"};
+  ${(props) => props.$highlightWrong && "background-color: var(--clr-wrong)"};
+
+  color: ${(props) => (props.$type === "subject" ? "" : "var(--clr-dt-700)")};
+  ${(props) => props.$isSelected && "color: var(--clr-white)"};
+
+  & > img {
+    width: var(--i-size-mobile);
+  }
+
+  @media screen and (min-width: ${TABLET_BREAKPOINT}px) {
+    & {
+      width: 56px;
+      height: 56px;
+      min-width: 56px;
+      min-height: 56px;
+      border-radius: 0.75rem;
+      font: var(--f-tablet-option-icon);
+    }
+
+    & > img {
+      width: var(--i-size-tablet);
+    }
+  }
+
+  @media screen and (min-width: ${DESKTOP_BREAKPOINT}px) {
+    border-radius: 0.5rem;
+  }
+`;
 
 // Styled component for main container
 const MainContainer = styled.li<MainContainerProps>`
@@ -76,6 +128,13 @@ const MainContainer = styled.li<MainContainerProps>`
       props.$theme === "light" ? "var(--clr-dt-300)" : "var(--clr-lt-700)"};
   }
 
+  ${(props) =>
+    !props.$isSelected &&
+    `&:hover ${IconContainer} {
+      background-color: var(--clr-bg-btn-and-selection-active);
+      color: var(--clr-option-hover);
+    }`}
+
   @media screen and (min-width: ${TABLET_BREAKPOINT}px) {
     border-radius: 1.5rem;
 
@@ -102,52 +161,6 @@ const ContentWrapper = styled.div`
   }
 `;
 
-// Styled component for icon container
-const IconContainer = styled.div<IconContainerProps>`
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  min-height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font: var(--f-mobile-option-icon);
-  border-radius: 0.375rem;
-
-  background-color: ${(props) =>
-    props.$backgroundColor ? props.$backgroundColor : "var(--clr-lt-600)"};
-  ${(props) => props.$isSelected && "background-color: var(--clr-accent)"};
-  ${(props) =>
-    props.$highlightCorrect && "background-color: var(--clr-correct)"};
-  ${(props) => props.$highlightWrong && "background-color: var(--clr-wrong)"};
-
-  color: ${(props) => (props.$type === "subject" ? "" : "var(--clr-dt-700)")};
-  ${(props) => props.$isSelected && "color: var(--clr-white)"};
-
-  & > img {
-    width: var(--i-size-mobile);
-  }
-
-  @media screen and (min-width: ${TABLET_BREAKPOINT}px) {
-    & {
-      width: 56px;
-      height: 56px;
-      min-width: 56px;
-      min-height: 56px;
-      border-radius: 0.75rem;
-      font: var(--f-tablet-option-icon);
-    }
-
-    & > img {
-      width: var(--i-size-tablet);
-    }
-  }
-
-  @media screen and (min-width: ${DESKTOP_BREAKPOINT}px) {
-    border-radius: 0.5rem;
-  }
-`;
-
 // Option component definition
 function Option({
   children,
@@ -155,6 +168,8 @@ function Option({
   icon,
   isTransparent = false,
   onClick,
+  onKeyDown,
+  tabIndex = 0,
 }: OptionProps) {
   // Using useSelector hook to get the current theme, selected option, game status, and answer from Redux state
   const theme = useSelector((state: RootState) => state.theme.value);
@@ -188,6 +203,8 @@ function Option({
       $highlightCorrect={highlightCorrect}
       $highlightWrong={highlightWrong}
       onClick={onClick}
+      onKeyDown={onKeyDown}
+      tabIndex={tabIndex}
       as={isTransparent ? "div" : "li"}
     >
       <ContentWrapper>
@@ -198,6 +215,7 @@ function Option({
           $isSelected={isSelected}
           $highlightCorrect={highlightCorrect}
           $highlightWrong={highlightWrong}
+          $isHovered={false}
         >
           {type === "subject" ? <img src={icon} alt="quiz name" /> : icon}
         </IconContainer>

@@ -16,7 +16,10 @@ const GlobalStyles = createGlobalStyle`
     --clr-accent: #a729f5;
     --clr-correct: #26d782;
     --clr-wrong: #ee5454;
-    --cl-bg-btn-hover: rgba(167, 41, 245, 0.5);
+    --clr-bg-btn-hover: rgba(167, 41, 245, 0.5);
+    --clr-selection-hover: ##a729f580;
+    --clr-bg-btn-and-selection-active: #F6E7FF;
+    --clr-option-hover: #A729F5;
 
 
     /* light theme */

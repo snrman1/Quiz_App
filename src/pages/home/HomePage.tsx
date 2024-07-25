@@ -20,7 +20,8 @@ type ThemeToggleWrapperProps = {
 const ThemeToggleWrapper = styled.div<ThemeToggleWrapperProps>`
   display: flex;
   justify-content: flex-end;
-  ${(props) => props.$device === Device.Mobile && "margin-top: 1.4375rem"};
+  ${(props) => props.$device === Device.Mobile && "margin-top: 1rem"};
+  margin-bottom: 1rem;
 `;
 
 // Creating a styled component for the content wrapper
