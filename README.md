@@ -42,8 +42,8 @@ Users should be able to:
 
 ### Links
 
-- Solutions URL: [Github] (https://github.com/snrman1/Quiz_App.git)
-- Live site URL: [GitHub pages]()
+- Solutions URL: [Github](https://github.com/snrman1/Quiz_App.git)
+- Live site URL: [GitHub pages](https://snrman1.github.io/Quiz_App/)
 
 ## MY PROCESS
 
@@ -60,10 +60,10 @@ Styled with styled-components
 - Flexbox
 - Css Grid
 - JavaScript
-- [React] (https://react.dev/) - JS Library
-- [Redux] (https://redux.js.org/)- React Library
-- [TypeScript] (https://react.dev/learn/typescript) Js Library
-- [Styled Components] (https://styled-components.com/docs/) - For styles
+- [React](https://react.dev/) - JS Library
+- [Redux](https://redux.js.org/)- React Library
+- [TypeScript](https://react.dev/learn/typescript) Js Library
+- [Styled-Components](https://styled-components.com/docs/) - For styles
 
 ### What i learned
 
@@ -96,7 +96,7 @@ const currentQuestionIndex = useSelector(
 
 ### Useful Resources
 
-- [Styled Components Documentation] (https://styled-components.com/docs) - This was very useful for learning how to style components in a modular and reusable way.
+- [Styled-Components Documentation](https://styled-components.com/docs) - This was very useful for learning how to style components in a modular and reusable way.
 - [React Documentation](https://react.dev/docs)- This is an excellent resource for understanding React.
 - [Redux Documentation](https://redux.js.org/docs) - This helped me to get a better grasp of state management in large applications.
 - [StackOverflow](https://stackoverflow.com) - This helped me to solve a problem with my state managment.
